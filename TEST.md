@@ -103,7 +103,7 @@ Once tested, integrate into your Electron app:
 
 1. **Install the plugin:**
    ```bash
-   npm install electron-console-forward-plugin
+   npm install git+https://github.com/Gatecrashah/electron-console-forward-plugin.git
    ```
 
 2. **Main process:**

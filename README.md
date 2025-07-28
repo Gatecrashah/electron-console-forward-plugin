@@ -13,9 +13,23 @@ Forward frontend console logs from Electron renderer process to your Node.js dev
 
 ## Installation
 
+Install directly from GitHub repository:
+
 ```bash
-npm install electron-console-forward-plugin
+npm install git+https://github.com/Gatecrashah/electron-console-forward-plugin.git
 ```
+
+Or if you prefer, you can clone and install locally:
+
+```bash
+git clone https://github.com/Gatecrashah/electron-console-forward-plugin.git
+cd electron-console-forward-plugin
+npm run build
+cd your-electron-project
+npm install /path/to/electron-console-forward-plugin
+```
+
+> **Why not npm?** This is a focused, lightweight plugin that's easier to install directly from the repository. No need for npm registry overhead for such a simple tool!
 
 ## Usage
 
