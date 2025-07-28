@@ -8,7 +8,10 @@
     "build": "tsc",
     "dev": "tsc --watch",
     "lint": "eslint src --ext .ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "npm run build && cd example && npm install && npm run build && npm run dev",
+    "test:server": "cd example && node server.js",
+    "test:electron": "cd example && npm run start"
   },
   "keywords": ["electron", "console", "logging", "development", "debug"],
   "author": "",
