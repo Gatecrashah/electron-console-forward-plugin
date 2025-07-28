@@ -123,9 +123,9 @@ Once tested, integrate into your Electron app:
 
 4. **Renderer process:**
    ```typescript
-   import { setupConsoleForwarding } from 'electron-console-forward-plugin';
+   import { ElectronConsoleForwarder } from 'electron-console-forward-plugin';
    
-   setupConsoleForwarding({
+   new ElectronConsoleForwarder({
      enabled: process.env.NODE_ENV === 'development'
    });
    ```

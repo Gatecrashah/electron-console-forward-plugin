@@ -49,10 +49,10 @@ import './node_modules/electron-console-forward-plugin/dist/preload.js';
 In your renderer process (React app, etc.):
 
 ```typescript
-import { setupConsoleForwarding } from 'electron-console-forward-plugin';
+import { ElectronConsoleForwarder } from 'electron-console-forward-plugin';
 
 // Initialize console forwarding
-const forwarder = setupConsoleForwarding({
+const forwarder = new ElectronConsoleForwarder({
   enabled: process.env.NODE_ENV === 'development',
   levels: ['log', 'warn', 'error', 'info']
 });
