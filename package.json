@@ -1,0 +1,29 @@
+{
+  "name": "electron-console-forward-plugin",
+  "version": "1.0.0",
+  "description": "Forward frontend console logs from Electron renderer process to the main process during development",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc",
+    "dev": "tsc --watch",
+    "lint": "eslint src --ext .ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": ["electron", "console", "logging", "development", "debug"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0"
+  },
+  "peerDependencies": {
+    "electron": ">=13.0.0"
+  },
+  "files": [
+    "dist/**/*"
+  ]
+}
