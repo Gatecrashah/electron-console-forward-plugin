@@ -108,11 +108,34 @@ interface ConsoleForwardOptions {
   enabled?: boolean;           // Default: true
   endpoint?: string;           // Default: '/api/debug/client-logs'
   levels?: ConsoleLevel[];     // Default: ['log', 'warn', 'error', 'info', 'debug']
-  devServerUrl?: string;       // Default: 'http://localhost:3000'
+  devServerUrl?: string;       // Default: 'http://localhost:3001' (auto-discovered from env vars)
   batchSize?: number;          // Default: 10
   batchTimeout?: number;       // Default: 1000ms
 }
 ```
+
+### Development Server URL Auto-Discovery
+
+The plugin automatically discovers your development server URL from environment variables:
+
+```bash
+# Direct URL specification (highest priority)
+DEV_SERVER_URL=http://localhost:4000
+
+# Framework-specific variables
+VITE_DEV_SERVER_URL=http://localhost:5173
+REACT_APP_DEV_SERVER_URL=http://localhost:3000
+
+# Host + port combination
+DEV_SERVER_HOST=localhost
+DEV_SERVER_PORT=3001
+
+# Port-only discovery
+VITE_PORT=5173
+PORT=3000
+```
+
+If no environment variables are found, defaults to `http://localhost:3001`.
 
 ## Security Considerations
 
