@@ -134,7 +134,14 @@ Once tested, integrate into your Electron app:
    ```typescript
    app.post('/api/debug/client-logs', (req, res) => {
      const { logs } = req.body;
-     logs.forEach(log => console.log(`[RENDERER] ${log.message}`));
+     
+     logs.forEach((log) => {
+       const time = new Date(log.timestamp).toLocaleTimeString('en-US', {
+         hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit'
+       });
+       console.log(`${time} [electron] [${log.level}] ${log.message}`);
+     });
+     
      res.status(200).json({ success: true });
    });
    ```

@@ -79,17 +79,26 @@ Add an endpoint to your development server to receive logs:
 ```typescript
 // Express.js example
 app.post('/api/debug/client-logs', (req, res) => {
-  const { logs, timestamp, source } = req.body;
+  const { logs } = req.body;
   
-  logs.forEach(log => {
-    console.log(`[${source}] [${log.level.toUpperCase()}] ${log.message}`);
-    if (log.stack) {
-      console.log(log.stack);
-    }
+  logs.forEach((log) => {
+    // Simple format: TIME [electron] [level] message  
+    const time = new Date(log.timestamp).toLocaleTimeString('en-US', {
+      hour12: true, hour: 'numeric', minute: '2-digit', second: '2-digit'
+    });
+    
+    console.log(`${time} [electron] [${log.level}] ${log.message}`);
   });
   
   res.status(200).json({ success: true });
 });
+```
+
+Example output:
+```
+12:26:31 PM [electron] [log] App initialized successfully
+12:26:32 PM [electron] [warn] Deprecated API usage detected
+12:26:34 PM [electron] [error] Failed to load user data Error: File not found
 ```
 
 ## Configuration Options
