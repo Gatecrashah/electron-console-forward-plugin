@@ -1,18 +1,11 @@
 import { ipcMain } from 'electron';
-import { LogEntry, ConsoleForwardOptions } from './types';
+import { LogEntry, ConsoleForwardOptions, mergeConsoleForwardOptions } from './types';
 
 export class ElectronConsoleForwardMain {
   private options: Required<ConsoleForwardOptions>;
 
   constructor(options: ConsoleForwardOptions = {}) {
-    this.options = {
-      enabled: options.enabled ?? true,
-      endpoint: options.endpoint ?? '/api/debug/client-logs',
-      levels: options.levels ?? ['log', 'warn', 'error', 'info', 'debug'],
-      devServerUrl: options.devServerUrl ?? 'http://localhost:3000',
-      batchSize: options.batchSize ?? 10,
-      batchTimeout: options.batchTimeout ?? 1000,
-    };
+    this.options = mergeConsoleForwardOptions(options);
 
     if (this.options.enabled) {
       this.setupIpcHandlers();

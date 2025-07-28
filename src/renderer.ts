@@ -1,4 +1,4 @@
-import { ConsoleLevel, LogEntry, ConsoleForwardOptions } from './types';
+import { ConsoleLevel, LogEntry, ConsoleForwardOptions, mergeConsoleForwardOptions } from './types';
 
 export class ElectronConsoleForwarder {
   private originalConsole: { [K in ConsoleLevel]: any } = {} as any;
@@ -7,14 +7,7 @@ export class ElectronConsoleForwarder {
   private batchTimer?: NodeJS.Timeout;
 
   constructor(options: ConsoleForwardOptions = {}) {
-    this.options = {
-      enabled: options.enabled ?? true,
-      endpoint: options.endpoint ?? '/api/debug/client-logs',
-      levels: options.levels ?? ['log', 'warn', 'error', 'info', 'debug'],
-      devServerUrl: options.devServerUrl ?? 'http://localhost:3000',
-      batchSize: options.batchSize ?? 10,
-      batchTimeout: options.batchTimeout ?? 1000,
-    };
+    this.options = mergeConsoleForwardOptions(options);
 
     if (this.options.enabled) {
       this.patchConsole();
